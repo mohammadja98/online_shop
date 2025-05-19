@@ -2,11 +2,16 @@
 services:
   web:
     build: .
-    command: python /code/manage.py runserver 0.0.0.0:8000
+    command: python /code/manage.py runserver 0.0.0.0:8000  
     volumes:
       - .:/code
     ports:
       - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - "DJANGO_SECRET_KEY=django-insecure-p!$$_q)#2qq!xlj3-^-sk7d_%_(e*43gvlu&rq$$e*+wo%lkmk4u"
+      - "DJANGO_DEBUG=True"
 
   db:
     image: postgres:14
