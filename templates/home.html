@@ -3,6 +3,10 @@
 {% block page_title %}Home Page{% endblock %}
 
 {% block content %}
-    <h2>Welcome to the Online Shop</h2>
+    {% if user.is_authenticated %}
+        <h3>Welcome to the Online Shop, {{ user.username }}!</h3>
+    {% else %}
+        <h3>Welcome to the Online Shop!</h3>
+    {% endif %}
     <p>Explore our range of products.</p>
 {% endblock %}
