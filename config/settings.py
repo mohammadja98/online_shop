@@ -45,18 +45,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     'crispy_forms',
     'crispy_bootstrap4',
     'allauth',
     'allauth.account',
     'rosetta',
+    'jalali_date',
 
 
     'accounts',
     'pages',
     'products',
     'cart',
+    'persian_translate',
 ]
 
 SITE_ID = 1
