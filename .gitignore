@@ -7,3 +7,4 @@ venv
 __pycache__
 New folder
 .gitignore
+staticfiles
