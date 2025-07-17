@@ -24,11 +24,11 @@
                                                 <thead>
                                                     <tr>
                                                         <th>&nbsp;</th>
-                                                        <th>عکس محصول</th>
-                                                        <th>نام محصول</th>
-                                                        <th>قیمت</th>
-                                                        <th>مقدار</th>
-                                                        <th>مجموع</th>
+                                                        <th>{% trans "Product picture" %}</th>
+                                                        <th>{% trans "Product name" %}</th>
+                                                        <th>{% trans "Price" %}</th>
+                                                        <th>{% trans "Quantity" %}</th>
+                                                        <th>{% trans "Total" %}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -40,9 +40,7 @@
                                                                 </a>
                                                             </td>
                                                             <td class="product-thumbnail text-left">
-                                                                {% if product.image %}
-                                                                  <img src="{{product.image.url}}" alt="Product Thumnail">
-                                                                {% endif %}
+                                                                  <img src="{{ item.product_obj.image.url }}" >
                                                             </td>
                                                             <td class="product-name">
                                                                 <h3>
@@ -88,12 +86,18 @@
                                         {%endif%}
                                     </div>
                                 </div>
-                                <div class="row no-gutters border-top pt--20 mt--20">
-                                    <div class="col-sm-6 text-sm-right">
-                                        <button type="submit" class="cart-form__btn">خالی کردن سبد خرید</button>
+                                {% if not cart.is_empty %}
+                                    <div class="row no-gutters border-top pt--20 mt--20">
+                                        <div class="col-sm-6 text-sm-right">
+                                            <form method="POST" action="{% url 'cart:cart_clear' %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="cart-form__btn">
+                                                    {% trans 'Empty cart' %}
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                {% endif %}
                         </div>
                         <div class="col-lg-4">
                             <div class="cart-collaterals">
@@ -120,8 +124,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="checkout.html" class="btn btn-fullwidth btn-bg-red btn-color-white btn-hover-2">
-                                    ثبت سفارش
+                                <a href="{% url "order_create" %}" class="btn btn-fullwidth btn-bg-red btn-color-white btn-hover-2">
+                                    {% trans 'Proceed to Checkout' %}
                                 </a>
                             </div>
                         </div>
